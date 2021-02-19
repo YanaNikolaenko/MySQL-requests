@@ -1,0 +1,129 @@
+CREATE DATABASE `searching`
+
+CREATE TABLE job_seeker
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    lastname Varchar (25) NOT NULL,
+    name Varchar (25) NOT NULL,
+    patronymic Varchar (25) NULL,
+    dateOfBirth date NULL
+)
+
+CREATE TABLE social_networks
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Youtube Varchar (25) NULL,
+    Instagram Varchar (25) NULL,
+    Facebook Varchar (25) NULL
+)
+
+CREATE TABLE university
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name Varchar (25) NOT NULL,
+    logo Varchar (25) NULL
+)
+
+ALTER TABLE `social_networks` ADD FOREIGN KEY (`id`) REFERENCES `job_seeker`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+CREATE TABLE job_seeker_university
+(
+    id_univetsity int NOT NULL PRIMARY KEY, 
+    id_job_seeker int NOT NULL
+)
+
+ALTER TABLE `job_seeker_university` ADD FOREIGN KEY (`id_job_seeker`) REFERENCES `job_seeker`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `job_seeker_university` ADD FOREIGN KEY (`id_university`) REFERENCES `university`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+CREATE TABLE experience
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    position Varchar (25) NOT NULL,
+    date1 date NOT NULL,
+    date2 date NOT NULL,
+    id_company int NOT NULL
+)
+
+CREATE TABLE job_seeker_experience
+(
+    id_experience int NOT NULL PRIMARY KEY, 
+    id_job_seeker int NOT NULL
+)
+
+ALTER TABLE `job_seeker_experience` ADD FOREIGN KEY (`id_experience`) REFERENCES `experience`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+ALTER TABLE `job_seeker_experience` ADD FOREIGN KEY (`id_job_seeker`) REFERENCES `job_seeker`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+ALTER TABLE `job_seeker_university` DROP PRIMARY KEY, ADD PRIMARY KEY( `id_univetsity`, `id_job_seeker`);
+ALTER TABLE `job_seeker_experience` DROP PRIMARY KEY, ADD PRIMARY KEY( `id_experience`, `id_job_seeker`);
+
+CREATE TABLE city
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name Varchar (25) NOT NULL
+)
+
+ALTER TABLE `city` ADD FOREIGN KEY (`id`) REFERENCES `university`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE resume
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id_job_seeker int NOT NULL,
+    id_city int NOT NULL
+)
+
+ALTER TABLE `resume` ADD FOREIGN KEY (`id_city`) REFERENCES `city`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+ALTER TABLE `resume` ADD FOREIGN KEY (`id_job_seeker`) REFERENCES `job_seeker`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE vacancy
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    position Varchar (25) NOT NULL,
+    salary Varchar (25) NULL,
+    description Varchar (255) NULL,
+    contact_number Varchar (25) NOT NULL, 
+    email  Varchar (25) NOT NULL,
+    id_company int NOT NULL,
+    id_city int NOT NULL
+)
+
+CREATE TABLE company
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name Varchar (25) NOT NULL,
+    logo Varchar (25) NULL
+)
+
+ALTER TABLE `vacancy` ADD FOREIGN KEY (`id_city`) REFERENCES `city`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+ALTER TABLE `vacancy` ADD FOREIGN KEY (`id_company`) REFERENCES `company`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `experience` ADD FOREIGN KEY (`id_company`) REFERENCES `company`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE type_of_employment
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name Varchar (25) NOT NULL
+)
+
+CREATE TABLE type_of_employment_vacancy
+(
+    id_type_of_employment int NOT NULL, 
+    id_vacancy int NOT NULL
+)
+
+ALTER TABLE type_of_employment_vacancy ADD PRIMARY KEY (`id_type_of_employment`,`id_vacancy`);
+ALTER TABLE `type_of_employment_vacancy` ADD FOREIGN KEY (`id_type_of_employment`) REFERENCES `type_of_employment`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+ALTER TABLE `type_of_employment_vacancy` ADD FOREIGN KEY (`id_vacancy`) REFERENCES `vacancy`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+CREATE TABLE response
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    letter Varchar (255) NOT NULL,
+    id_resume int NOT NULL,
+    id_vacancy int NOT NULL,
+    date date NOT NULL
+)
+
+ALTER TABLE `response` ADD FOREIGN KEY (`id_resume`) REFERENCES `resume`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+ALTER TABLE `response` ADD FOREIGN KEY (`id_vacancy`) REFERENCES `vacancy`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

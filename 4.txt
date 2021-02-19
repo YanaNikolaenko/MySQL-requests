@@ -1,0 +1,53 @@
+CREATE DATABASE Technics;
+use Technics;
+
+CREATE TABLE worker
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    full_name Varchar (50) NOT NULL,
+    position Varchar (25) NULL
+);
+
+CREATE TABLE status
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type Varchar (20) NOT NULL
+);
+CREATE TABLE technics
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name Varchar (25) NOT NULL,
+    type Varchar (25) NOT NULL,
+    date1 DATE NOT NULL,
+    date2 DATE NOT NULL,
+    workerId int NOT NULL,
+    statusId int NOT NULL,
+    FOREIGN KEY (workerId) REFERENCES worker (id),
+    FOREIGN KEY (statusId) REFERENCES status (id)
+);
+
+INSERT INTO status (type) VALUES ('В эксплуатации');
+INSERT INTO status (type) VALUES ('На ремонте');
+INSERT INTO status (type) VALUES ('Списана');
+
+INSERT INTO worker (full_name, position) VALUES ('Лукашенко Александр Григорьевич', 'тракторист');
+INSERT INTO worker (full_name, position) VALUES ('Путин Владимир Владимирович', 'комбайнер');
+INSERT INTO worker (full_name, position) VALUES ('Трамп Дональд', 'просто колхозник');
+
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Беларус', 'аграрная', '2016-06-30', '2020-06-30', 1, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('БелАЗ', 'промышленная', '2014-01-01', '2030-01-01', 2, 2);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Василёк', 'строительная', '2016-01-01', '2040-01-01', 3, 3);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Путинка', 'аграрная', '2020-08-22', '2038-01-01', 3, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Лукашка', 'промышленная', '2016-01-01', '2018-01-01', 1, 3);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Трампинка', 'строительная', '1990-01-01', '2014-01-01', 1, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Полесье', 'промышленная', '2016-01-01', '2021-01-01', 2, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Беларус', 'аграрная', '2016-06-30', '2020-06-30', 2, 3);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('БелАЗ', 'промышленная', '2014-01-01', '2030-01-01', 1, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Василёк', 'строительная', '2016-01-01', '2040-01-01', 3, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Путинка', 'аграрная', '2020-08-22', '2038-01-01', 2, 2);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Лукашка', 'промышленная', '2016-01-01', '2018-01-01', 2, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Трампинка', 'строительная', '1990-01-01', '2014-01-01', 3, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Полесье', 'промышленная', '2016-01-01', '2021-01-01', 2, 1);
+
+
+SELECT technics.name, technics.type, worker.full_name, worker.position FROM worker JOIN technics ON worker.id = technics.workerId JOIN status ON status.id = technics.statusId WHERE statusId = 1 AND date2 > '2020-06-28';

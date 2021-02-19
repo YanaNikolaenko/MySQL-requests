@@ -1,0 +1,43 @@
+CREATE TABLE students
+(
+    id_st int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name Varchar (255) NOT NULL
+)
+
+INSERT INTO students (name) VALUES ('Яна');
+INSERT INTO students (name) VALUES ('Мухаммед');
+
+CREATE TABLE subjects
+(
+    id_pr int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title Varchar (255) NOT NULL
+)
+
+INSERT INTO subjects (title) VALUES ('Математика');
+INSERT INTO subjects (title) VALUES ('Физкультура');
+
+CREATE TABLE teachers
+(
+    id_t int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    FIO Varchar (255) NOT NULL
+)
+
+INSERT INTO teachers (FIO) VALUES ('Анищук Сергей Викторович')
+INSERT INTO teachers (FIO) VALUES ('Козелько Федор Николаевич')
+
+CREATE TABLE raspisanie
+(
+    id_r int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    time Time NOT NULL,
+    classroom VarChar (25)  NOT NULL
+)
+
+
+ALTER TABLE Orders 
+ADD CONSTRAINT `UNIQUE` FOREIGN KEY(`CustomerId`) REFERENCES Customers(`Id`);
+
+
+ALTER TABLE `raspisanie` ADD `id_studenta` INT(11) NULL AFTER `classroom`, ADD `id_predmeta` INT(11) NULL AFTER `id_studenta`, ADD `id_prepoda` INT(11) NULL AFTER `id_predmeta`, ADD INDEX `составной индекс` (`id_studenta`, `id_predmeta`, `id_prepoda`);
+
+ALTER TABLE `raspisanie` DROP FOREIGN KEY `rasp_stud`; ALTER TABLE `raspisanie` ADD CONSTRAINT `rasp_stud` FOREIGN KEY (`id_studenta`) REFERENCES `students`(`id_st`) ON DELETE SET NULL ON UPDATE SET NULL; ALTER TABLE `raspisanie` ADD CONSTRAINT `rasp_sub` FOREIGN KEY (`id_predmeta`) REFERENCES `subjects`(`id_pr`) ON DELETE CASCADE ON UPDATE CASCADE; ALTER TABLE `raspisanie` ADD CONSTRAINT `rasp_teach` FOREIGN KEY (`id_prepoda`) REFERENCES `teachers`(`id_t`) ON DELETE SET NULL ON UPDATE SET NULL;
+

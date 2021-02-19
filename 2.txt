@@ -1,0 +1,87 @@
+CREATE DATABASE агенство;
+use агенство;
+
+CREATE TABLE agency
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name Varchar (25) NOT NULL,
+    city Varchar (25) NULL
+);
+
+CREATE TABLE organizations
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name Varchar (30) NOT NULL,
+    description Varchar (255) NULL,
+    phone Varchar (25) NULL,
+    email Varchar (25) NULL
+);
+
+CREATE TABLE applicant
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    lastname Varchar (30) NOT NULL,
+    name Varchar (255) NULL,
+    patronymic Varchar (25) NULL,
+    phone Varchar (25) NULL,
+    email Varchar (25) NULL,
+    zp Varchar (25) NULL,
+    agencyId int NOT NULL,
+    FOREIGN KEY (agencyId) REFERENCES agency (id)
+);
+
+CREATE TABLE status
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name ENUM('на рассмотрении', 'принята', 'удалена')
+);
+
+CREATE TABLE vacancy
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    position Varchar (30) NOT NULL,
+    zp Varchar (25) NULL,
+    agencyId int NOT NULL,
+    organizationId int NOT NULL,
+    FOREIGN KEY (agencyId) REFERENCES agency (id),
+    FOREIGN KEY (organizationId) REFERENCES organizations (id)
+);
+
+CREATE TABLE request
+(
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    applicantId int NOT NULL,
+    vacancyId int NOT NULL,
+    statusId int NOT NULL,
+    FOREIGN KEY (applicantId) REFERENCES applicant (id),
+    FOREIGN KEY (vacancyId) REFERENCES vacancy (id),
+    FOREIGN KEY (statusId) REFERENCES status (id)
+);
+
+INSERT INTO agency (name, city) VALUES ('Ромашка', 'Минск');
+INSERT INTO agency (name, city) VALUES ('Тюльпан', 'Москва');
+INSERT INTO agency (name, city) VALUES ('Гвоздика', 'Нью-Йорк');
+
+INSERT INTO applicant (lastname, name, patronymic, phone, email, zp, agencyId) VALUES ('Путин', 'Владимир', 'Владимирович', '8-000-00-00-00', 'vladimir@mail.ru', '500 000$', 1);
+INSERT INTO applicant (lastname, name, patronymic, phone, email, zp, agencyId) VALUES ('Лукашенко', 'Александр', 'Григорьевич', '1-111-11-11-11', 'lukash@mail.ru', '1 500 000$', 2);
+INSERT INTO applicant (lastname, name, patronymic, phone, email, zp, agencyId) VALUES ('Трамп', 'Дональд', 'Васильевич', '5-555-55-55-55', 'don@mail.ru', '1 500 000$', 3);
+
+INSERT INTO organizations (name, description, phone, email) VALUES ('Епам', 'Мы самые крутые', '592146', 'Епам@mail.ru');
+INSERT INTO organizations (name, description, phone, email) VALUES ('Айтранзишн', 'Мы амбициозные', '65874595200', 'Айтранзишн@mail.ru');
+INSERT INTO organizations (name, description, phone, email) VALUES ('Просто контора', 'Просто описание', '5555555', 'контора@mail.ru');
+
+INSERT INTO vacancy (position, zp, agencyId, organizationId) VALUES ('Уборщик', '1', 2, 1);
+INSERT INTO vacancy (position, zp, agencyId, organizationId) VALUES ('Вытиральщик обуви', '5', 1, 2);
+INSERT INTO vacancy (position, zp, agencyId, organizationId) VALUES ('Гардеробщик', '3', 3, 3);
+
+INSERT INTO status (name) VALUES ('review');
+INSERT INTO status (name) VALUES ('deleted');
+INSERT INTO status (name) VALUES ('accepted');
+
+INSERT INTO `request` (`id`, `applicantId`, `vacancyId`, `statusId`) VALUES (NULL, '2', '2', '3'), (NULL, '3', '1', '2'), (NULL, '4', '3', '1');
+
+
+SELECT applicant.email FROM applicant JOIN request ON applicant.id = request.applicantId JOIN vacancy ON request.vacancyId = vacancy.id JOIN organizations ON vacancy.organizationId = organizations.id WHERE organizations.name LIKE 'Епам'$
+SELECT count(zp) FROM `vacancy`;
+SELECT max(zp) as 'Максимальная ЗП', position FROM vacancy;
+SELECT max(zp) 'Максимальная ЗП', position 'Должность 'FROM vacancy;
