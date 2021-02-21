@@ -26,28 +26,27 @@ CREATE TABLE technics
     FOREIGN KEY (statusId) REFERENCES status (id)
 );
 
-INSERT INTO status (type) VALUES ('Â ýêñïëóàòàöèè');
-INSERT INTO status (type) VALUES ('Íà ðåìîíòå');
-INSERT INTO status (type) VALUES ('Ñïèñàíà');
+INSERT INTO status (type) VALUES ('Ð’ ÑÐºÑÐ¿Ð»ÑƒÐ°Ñ‚Ð°Ñ†Ð¸Ð¸');
+INSERT INTO status (type) VALUES ('ÐÐ° Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ðµ');
+INSERT INTO status (type) VALUES ('Ð¡Ð¿Ð¸ÑÐ°Ð½Ð°');
 
-INSERT INTO worker (full_name, position) VALUES ('Ëóêàøåíêî Àëåêñàíäð Ãðèãîðüåâè÷', 'òðàêòîðèñò');
-INSERT INTO worker (full_name, position) VALUES ('Ïóòèí Âëàäèìèð Âëàäèìèðîâè÷', 'êîìáàéíåð');
-INSERT INTO worker (full_name, position) VALUES ('Òðàìï Äîíàëüä', 'ïðîñòî êîëõîçíèê');
+INSERT INTO worker (full_name, position) VALUES ('Ð›ÑƒÐºÐ°ÑˆÐµÐ½ÐºÐ¾ ÐÐ»ÐµÐºÑÐ°Ð½Ð´Ñ€ Ð“Ñ€Ð¸Ð³Ð¾Ñ€ÑŒÐµÐ²Ð¸Ñ‡', 'Ñ‚Ñ€Ð°ÐºÑ‚Ð¾Ñ€Ð¸ÑÑ‚');
+INSERT INTO worker (full_name, position) VALUES ('ÐŸÑƒÑ‚Ð¸Ð½ Ð’Ð»Ð°Ð´Ð¸Ð¼Ð¸Ñ€ Ð’Ð»Ð°Ð´Ð¸Ð¼Ð¸Ñ€Ð¾Ð²Ð¸Ñ‡', 'ÐºÐ¾Ð¼Ð±Ð°Ð¹Ð½ÐµÑ€');
+INSERT INTO worker (full_name, position) VALUES ('Ð¢Ñ€Ð°Ð¼Ð¿ Ð”Ð¾Ð½Ð°Ð»ÑŒÐ´', 'Ð¿Ñ€Ð¾ÑÑ‚Ð¾ ÐºÐ¾Ð»Ñ…Ð¾Ð·Ð½Ð¸Ðº');
 
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Áåëàðóñ', 'àãðàðíàÿ', '2016-06-30', '2020-06-30', 1, 1);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('ÁåëÀÇ', 'ïðîìûøëåííàÿ', '2014-01-01', '2030-01-01', 2, 2);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Âàñèë¸ê', 'ñòðîèòåëüíàÿ', '2016-01-01', '2040-01-01', 3, 3);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ïóòèíêà', 'àãðàðíàÿ', '2020-08-22', '2038-01-01', 3, 1);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ëóêàøêà', 'ïðîìûøëåííàÿ', '2016-01-01', '2018-01-01', 1, 3);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Òðàìïèíêà', 'ñòðîèòåëüíàÿ', '1990-01-01', '2014-01-01', 1, 1);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ïîëåñüå', 'ïðîìûøëåííàÿ', '2016-01-01', '2021-01-01', 2, 1);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Áåëàðóñ', 'àãðàðíàÿ', '2016-06-30', '2020-06-30', 2, 3);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('ÁåëÀÇ', 'ïðîìûøëåííàÿ', '2014-01-01', '2030-01-01', 1, 1);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Âàñèë¸ê', 'ñòðîèòåëüíàÿ', '2016-01-01', '2040-01-01', 3, 1);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ïóòèíêà', 'àãðàðíàÿ', '2020-08-22', '2038-01-01', 2, 2);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ëóêàøêà', 'ïðîìûøëåííàÿ', '2016-01-01', '2018-01-01', 2, 1);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Òðàìïèíêà', 'ñòðîèòåëüíàÿ', '1990-01-01', '2014-01-01', 3, 1);
-INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ïîëåñüå', 'ïðîìûøëåííàÿ', '2016-01-01', '2021-01-01', 2, 1);
-
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð‘ÐµÐ»Ð°Ñ€ÑƒÑ', 'Ð°Ð³Ñ€Ð°Ñ€Ð½Ð°Ñ', '2016-06-30', '2020-06-30', 1, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð‘ÐµÐ»ÐÐ—', 'Ð¿Ñ€Ð¾Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð½Ð°Ñ', '2014-01-01', '2030-01-01', 2, 2);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð’Ð°ÑÐ¸Ð»Ñ‘Ðº', 'ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð°Ñ', '2016-01-01', '2040-01-01', 3, 3);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('ÐŸÑƒÑ‚Ð¸Ð½ÐºÐ°', 'Ð°Ð³Ñ€Ð°Ñ€Ð½Ð°Ñ', '2020-08-22', '2038-01-01', 3, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð›ÑƒÐºÐ°ÑˆÐºÐ°', 'Ð¿Ñ€Ð¾Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð½Ð°Ñ', '2016-01-01', '2018-01-01', 1, 3);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð¢Ñ€Ð°Ð¼Ð¿Ð¸Ð½ÐºÐ°', 'ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð°Ñ', '1990-01-01', '2014-01-01', 1, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('ÐŸÐ¾Ð»ÐµÑÑŒÐµ', 'Ð¿Ñ€Ð¾Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð½Ð°Ñ', '2016-01-01', '2021-01-01', 2, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð‘ÐµÐ»Ð°Ñ€ÑƒÑ', 'Ð°Ð³Ñ€Ð°Ñ€Ð½Ð°Ñ', '2016-06-30', '2020-06-30', 2, 3);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð‘ÐµÐ»ÐÐ—', 'Ð¿Ñ€Ð¾Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð½Ð°Ñ', '2014-01-01', '2030-01-01', 1, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð’Ð°ÑÐ¸Ð»Ñ‘Ðº', 'ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð°Ñ', '2016-01-01', '2040-01-01', 3, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('ÐŸÑƒÑ‚Ð¸Ð½ÐºÐ°', 'Ð°Ð³Ñ€Ð°Ñ€Ð½Ð°Ñ', '2020-08-22', '2038-01-01', 2, 2);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð›ÑƒÐºÐ°ÑˆÐºÐ°', 'Ð¿Ñ€Ð¾Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð½Ð°Ñ', '2016-01-01', '2018-01-01', 2, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('Ð¢Ñ€Ð°Ð¼Ð¿Ð¸Ð½ÐºÐ°', 'ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð°Ñ', '1990-01-01', '2014-01-01', 3, 1);
+INSERT INTO technics (name, type, date1, date2, workerId, statusId) VALUES ('ÐŸÐ¾Ð»ÐµÑÑŒÐµ', 'Ð¿Ñ€Ð¾Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð½Ð°Ñ', '2016-01-01', '2021-01-01', 2, 1);
 
 SELECT technics.name, technics.type, worker.full_name, worker.position FROM worker JOIN technics ON worker.id = technics.workerId JOIN status ON status.id = technics.statusId WHERE statusId = 1 AND date2 > '2020-06-28';

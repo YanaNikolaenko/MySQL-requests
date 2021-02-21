@@ -35,7 +35,6 @@ CREATE TABLE job_seeker_university
 ALTER TABLE `job_seeker_university` ADD FOREIGN KEY (`id_job_seeker`) REFERENCES `job_seeker`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `job_seeker_university` ADD FOREIGN KEY (`id_university`) REFERENCES `university`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-
 CREATE TABLE experience
 (
     id int NOT NULL PRIMARY KEY AUTO_INCREMENT,

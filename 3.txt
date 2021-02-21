@@ -4,8 +4,8 @@ CREATE TABLE students
     name Varchar (255) NOT NULL
 )
 
-INSERT INTO students (name) VALUES ('Яна');
-INSERT INTO students (name) VALUES ('Мухаммед');
+INSERT INTO students (name) VALUES ('РЇРЅР°');
+INSERT INTO students (name) VALUES ('РњСѓС…Р°РјРјРµРґ');
 
 CREATE TABLE subjects
 (
@@ -13,8 +13,8 @@ CREATE TABLE subjects
     title Varchar (255) NOT NULL
 )
 
-INSERT INTO subjects (title) VALUES ('Математика');
-INSERT INTO subjects (title) VALUES ('Физкультура');
+INSERT INTO subjects (title) VALUES ('РњР°С‚РµРјР°С‚РёРєР°');
+INSERT INTO subjects (title) VALUES ('Р¤РёР·РєСѓР»СЊС‚СѓСЂР°');
 
 CREATE TABLE teachers
 (
@@ -22,8 +22,8 @@ CREATE TABLE teachers
     FIO Varchar (255) NOT NULL
 )
 
-INSERT INTO teachers (FIO) VALUES ('Анищук Сергей Викторович')
-INSERT INTO teachers (FIO) VALUES ('Козелько Федор Николаевич')
+INSERT INTO teachers (FIO) VALUES ('РђРЅРёС‰СѓРє РЎРµСЂРіРµР№ Р’РёРєС‚РѕСЂРѕРІРёС‡')
+INSERT INTO teachers (FIO) VALUES ('РљРѕР·РµР»СЊРєРѕ Р¤РµРґРѕСЂ РќРёРєРѕР»Р°РµРІРёС‡')
 
 CREATE TABLE raspisanie
 (
@@ -37,7 +37,6 @@ ALTER TABLE Orders
 ADD CONSTRAINT `UNIQUE` FOREIGN KEY(`CustomerId`) REFERENCES Customers(`Id`);
 
 
-ALTER TABLE `raspisanie` ADD `id_studenta` INT(11) NULL AFTER `classroom`, ADD `id_predmeta` INT(11) NULL AFTER `id_studenta`, ADD `id_prepoda` INT(11) NULL AFTER `id_predmeta`, ADD INDEX `составной индекс` (`id_studenta`, `id_predmeta`, `id_prepoda`);
+ALTER TABLE `raspisanie` ADD `id_studenta` INT(11) NULL AFTER `classroom`, ADD `id_predmeta` INT(11) NULL AFTER `id_studenta`, ADD `id_prepoda` INT(11) NULL AFTER `id_predmeta`, ADD INDEX `СЃРѕСЃС‚Р°РІРЅРѕР№ РёРЅРґРµРєСЃ` (`id_studenta`, `id_predmeta`, `id_prepoda`);
 
 ALTER TABLE `raspisanie` DROP FOREIGN KEY `rasp_stud`; ALTER TABLE `raspisanie` ADD CONSTRAINT `rasp_stud` FOREIGN KEY (`id_studenta`) REFERENCES `students`(`id_st`) ON DELETE SET NULL ON UPDATE SET NULL; ALTER TABLE `raspisanie` ADD CONSTRAINT `rasp_sub` FOREIGN KEY (`id_predmeta`) REFERENCES `subjects`(`id_pr`) ON DELETE CASCADE ON UPDATE CASCADE; ALTER TABLE `raspisanie` ADD CONSTRAINT `rasp_teach` FOREIGN KEY (`id_prepoda`) REFERENCES `teachers`(`id_t`) ON DELETE SET NULL ON UPDATE SET NULL;
-
